@@ -1,12 +1,14 @@
 /*localStorage.name = "leaderboard"
 localStorage["name"] = "ESMAD"
-localStorage.setItem("name", "points");*/
+localStorage.setItem("points");*/
 
-var hasWon = false;
+//ganhou 
+var ganhou = false;
 window.rollDice = ()=>{
-  if (hasWon) {
+  if (ganhou) {
     return;
   }
+  //dado e perdeu 
   const max = 6;
   const roll = Math.ceil(Math.random() * max);
   console.log("Saiu", roll);
@@ -19,29 +21,30 @@ window.rollDice = ()=>{
       currentPlayer.position = luckyHole.end;
     }
   });
-  
+  //quadrado que ganha
   if (currentPlayer.position === 130) {
     alert("Ganhou!")
-    hasWon = true;
+    ganhou = true;
   }
+  //saber a posicao
   if (currentPlayer.position === position) {
     const diff = currentPlayer.position - position;
     currentPlayerPosition = position - diff;
   }
-  
+  //qual player tem que jogar 
   currentPlayerTurn ++;
   if (currentPlayerTurn >= players.length) {
     currentPlayerTurn = 0;
   }
   renderBoard();
 }
-
+//players (pode se adicionar outro)
 const players = [{
 name:"proj-alg",
   position: 0,
   color: "white"
 }];
-
+//variaveis e os lucky holes
 let currentPlayerTurn = 0;
 
 const width = 11;
@@ -74,14 +77,14 @@ for (var y = height; y >= 0; y--) {
   
   board.push(row);
   for (var x = 0; x < width; x++) {
-    
+    //como vai ser  o tabuleiro e cores
     row.push({x,y,occupied:null,position,color: blackSquare ? "steelblue" : "silver"});
      //row.push({x,y,occupied:null,position,color: blackSquare ? "steelblue" : "silver"});
     blackSquare = !blackSquare;
     position ++;
   }
 }
-
+//crair o tabuleiro
 const boardSizeConst = 50;
 const renderBoard = ()=>{
   let boardHTML = ``;
@@ -90,7 +93,7 @@ const renderBoard = ()=>{
       boardHTML += `<div class=square style="top:${square.y * boardSizeConst}px; left:${square.x * boardSizeConst}px; background-color:${square.color}"></div>`
     });
   });
-  
+  //saber onde o player anda (consola)
   players.forEach(player=>{
     let square = null;
     board.forEach(row=>{
@@ -105,7 +108,7 @@ const renderBoard = ()=>{
     });
   });
 
-  
+  //lucky holes e as "hit box"
   
   luckyHoles.forEach(luckyHoles=>{
     
@@ -127,13 +130,14 @@ const renderBoard = ()=>{
         }
       });
     });
-    
+    // "LuckyHoles" 
     const isluckyHole = luckyHoles.end > luckyHoles.start;
     
     drawLine({color : isluckyHole ? "green" : "red",startPos,endPos});
   });
   document.getElementById("board").innerHTML = boardHTML;
 }
+//canvas para desenhar as linhas
 
 function drawLine({color,startPos,endPos}){
   
