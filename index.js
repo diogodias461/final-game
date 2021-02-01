@@ -153,4 +153,10 @@ function drawLine({color,startPos,endPos}){
   ctx.stroke();
 }
 
+function restart(){
+  document.location.reload(true)
+  currentPlayer.position = luckyHole.end;
+  alert("Deu restart")
+}
+
 renderBoard();
