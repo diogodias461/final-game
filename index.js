@@ -1,6 +1,6 @@
-localStorage.name = "leaderboard"
+/*localStorage.name = "leaderboard"
 localStorage["name"] = "ESMAD"
-localStorage.setItem("name", "points");
+localStorage.setItem("name", "points");*/
 
 var hasWon = false;
 window.rollDice = ()=>{
@@ -20,8 +20,8 @@ window.rollDice = ()=>{
     }
   });
   
-  if (currentPlayer.position === position) {
-    alert("Ganhou")
+  if (currentPlayer.position === 130) {
+    alert("Ganhou!")
     hasWon = true;
   }
   if (currentPlayer.position === position) {
@@ -76,7 +76,7 @@ for (var y = height; y >= 0; y--) {
   for (var x = 0; x < width; x++) {
     
     row.push({x,y,occupied:null,position,color: blackSquare ? "steelblue" : "silver"});
-     row.push({x,y,occupied:null,position,color: blackSquare ? "steelblue" : "silver"});
+     //row.push({x,y,occupied:null,position,color: blackSquare ? "steelblue" : "silver"});
     blackSquare = !blackSquare;
     position ++;
   }
