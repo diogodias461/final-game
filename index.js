@@ -22,7 +22,7 @@ window.rollDice = ()=>{
     }
   });
   //quadrado que ganha
-  if (currentPlayer.position === 130) {
+  if (currentPlayer.position === position) {
     alert("Ganhou!")
     ganhou = true;
   }
@@ -84,7 +84,7 @@ for (var y = height; y >= 0; y--) {
     position ++;
   }
 }
-//crair o tabuleiro
+//criar o tabuleiro
 const boardSizeConst = 50;
 const renderBoard = ()=>{
   let boardHTML = ``;
